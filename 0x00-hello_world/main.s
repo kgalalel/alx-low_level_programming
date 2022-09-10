@@ -1,43 +1,89 @@
- .file   "main.c"
+.file	"2-main.c"
 
-    .text
+	.text
 
-    .globl  main
+	.section	.rodata
 
-    .type   main, @function
+.LC0:
+
+	.string	"Holberton School"
+
+	.text
+
+	.globl	main
+
+	.type	main, @function
 
 main:
 
 .LFB0:
 
-    .cfi_startproc
+	.cfi_startproc
 
-    pushq   %rbp
+	endbr64
 
-    .cfi_def_cfa_offset 16
+	pushq	%rbp
 
-    .cfi_offset 6, -16
+	.cfi_def_cfa_offset 16
 
-    movq    %rsp, %rbp
+	.cfi_offset 6, -16
 
-    .cfi_def_cfa_register 6
+	movq	%rsp, %rbp
 
-    movl    $0, %eax
+	.cfi_def_cfa_register 6
 
-    popq    %rbp
+	leaq	.LC0(%rip), %rdi
 
-    .cfi_def_cfa 7, 8
+	movl	$0, %eax
 
-    ret
+	call	printf@PLT
 
-    .cfi_endproc
+	movl	$0, %eax
+
+	popq	%rbp
+
+	.cfi_def_cfa 7, 8
+
+	ret
+
+	.cfi_endproc
 
 .LFE0:
 
-    .size   main, .-main
+	.size	main, .-main
 
-    .ident  "GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.2) 5.4.0 20160609"
+	.ident	"GCC: (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0"
 
-    .section    .note.GNU-stack,"",@progbits
+	.section	.note.GNU-stack,"",@progbits
 
+	.section	.note.gnu.property,"a"
 
+	.align 8
+
+	.long	 1f - 0f
+
+	.long	 4f - 1f
+
+	.long	 5
+
+0:
+
+	.string	 "GNU"
+
+1:
+
+	.align 8
+
+	.long	 0xc0000002
+
+	.long	 3f - 2f
+
+2:
+
+	.long	 0x3
+
+3:
+
+	.align 8
+
+4:
